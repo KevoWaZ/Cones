@@ -19,6 +19,32 @@ function rayonF() {
         aireBase.value = Math.PI * Math.pow(number, 2)
 }
 
+function diametreF() {
+        let number = Number(diametre.value)
+
+        rayon.value = number / 2
+        perimetre.value = diametre.value * Math.PI
+        aireBase.value = Math.PI * Math.pow(rayon.value, 2)
+}
+
+function perimetreF() {
+        let number = Number(perimetre.value)
+
+        diametre.value = number / Math.PI
+        rayon.value = diametre.value / 2
+        aireBase.value = Math.PI * Math.pow(rayon.value, 2)
+}
+
+function aireBaseF() {
+        let number = Number(aireBase.value)
+
+        rayon.value = Math.sqrt(number / Math.PI)
+        diametre.value = rayon.value * 2
+        perimetre.value = diametre.value * Math.PI
+}
+
+
+
 function hauteurF() {
         let number2 = Number(hauteur.value)
 
@@ -52,10 +78,10 @@ function aireLateraleF() {
 function aireTotaleF() {
         let number = Number(aireTotale.value)
 
-        aireLaterale.value = number - aireBase.value
-        apotheme.value = aireLaterale.value / (Math.PI * rayon.value)
-        hauteur.value = Math.sqrt(Math.pow(apotheme.value, 2) - Math.pow(rayon.value, 2))
-        volume.value = (1/3) * aireBase.value * hauteur.value
+        aireLaterale.value = (number - aireBase.value).toFixed(12)
+        apotheme.value = (aireLaterale.value / (Math.PI * rayon.value)).toFixed(12)
+        hauteur.value = (Math.sqrt(Math.pow(apotheme.value, 2) - Math.pow(rayon.value, 2))).toFixed(12)
+        volume.value = ((1/3) * aireBase.value * hauteur.value).toFixed(12)
         rayonF()
 }
 
@@ -72,6 +98,22 @@ function volumeF() {
 rayon.onchange = function () {
     rayonF()
 }
+
+diametre.onchange = function () {
+    diametreF()
+}
+
+perimetre.onchange = function () {
+    perimetreF()
+}
+
+aireBase.onchange = function () {
+    aireBaseF()
+}
+
+
+
+
 
 hauteur.onchange = function () {
     hauteurF()
