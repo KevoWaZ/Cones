@@ -7,6 +7,8 @@ let apotheme = document.getElementById("apotheme")
 let aireLaterale = document.getElementById("aireLaterale")
 let aireTotale = document.getElementById("aireTotale")
 let volume = document.getElementById("volume")
+let btnReset = document.getElementById("btnReset")
+let Tau = Math.PI * 2
 
 
 
@@ -52,7 +54,6 @@ function hauteurF() {
         aireLaterale.value = Math.PI * rayon.value * apotheme.value
         aireTotale.value = (Number(aireLaterale.value) + Number(aireBase.value)).toFixed(12)
         volume.value = (1/3) * aireBase.value * number2
-        rayonF()
 }
 
 function apothemeF() {
@@ -62,7 +63,6 @@ function apothemeF() {
         aireTotale.value = (Number(aireLaterale.value) + Number(aireBase.value)).toFixed(12)
         hauteur.value = Math.sqrt(Math.pow(number, 2) - Math.pow(rayon.value, 2))
         volume.value = (1/3) * aireBase.value * hauteur.value
-        rayonF()
 }
 
 function aireLateraleF() {
@@ -72,7 +72,6 @@ function aireLateraleF() {
         apotheme.value = number / (Math.PI * rayon.value)
         hauteur.value = Math.sqrt(Math.pow(apotheme.value, 2) - Math.pow(rayon.value, 2))
         volume.value = (1/3) * aireBase.value * hauteur.value
-        rayonF()
 }
 
 function aireTotaleF() {
@@ -82,7 +81,6 @@ function aireTotaleF() {
         apotheme.value = (aireLaterale.value / (Math.PI * rayon.value)).toFixed(12)
         hauteur.value = (Math.sqrt(Math.pow(apotheme.value, 2) - Math.pow(rayon.value, 2))).toFixed(12)
         volume.value = ((1/3) * aireBase.value * hauteur.value).toFixed(12)
-        rayonF()
 }
 
 function volumeF() {
@@ -92,7 +90,6 @@ function volumeF() {
         apotheme.value = Math.sqrt(Math.pow(hauteur.value, 2) + Math.pow(rayon.value, 2)).toFixed(12)
         aireLaterale.value = Math.PI * rayon.value * apotheme.value
         aireTotale.value = (Number(aireLaterale.value) + Number(aireBase.value)).toFixed(12)
-        rayonF()
 }
 
 rayon.onchange = function () {
@@ -133,4 +130,16 @@ aireTotale.onchange = function () {
 
 volume.onchange = function () {
     volumeF()
+}
+
+btnReset.onclick = function() {
+    rayon.value = ""
+    diametre.value = ""
+    perimetre.value = ""
+    aireBase.value = ""
+    hauteur.value = ""
+    apotheme.value = ""
+    aireLaterale.value = ""
+    aireTotale.value = ""
+    volume.value = ""
 }
