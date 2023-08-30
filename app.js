@@ -9,7 +9,20 @@ let aireTotale = document.getElementById("aireTotale")
 let volume = document.getElementById("volume")
 let btnReset = document.getElementById("btnReset")
 let Tau = Math.PI * 2
-numVerif = [rayon.value, diametre.value, perimetre.value, aireBase.value]
+let modal = document.getElementById('modal')
+let numVerif = {
+    rayon: rayon.value,
+    diametre: diametre.value,
+    perimetre: perimetre.value,
+    aireBase: aireBase.value
+}
+let numVerif2 = {
+    hauteur: hauteur.value,
+    apotheme: apotheme.value,
+    aireLaterale: aireLaterale.value,
+    aireTotale: aireTotale.value,
+    volume: volume.value
+}
 let isBelowZero = (currentValue) => currentValue <= 0
 
 
@@ -19,13 +32,15 @@ function rayonF() {
     let number = Number(rayon.value)
 
     if (number <= 0) {
-        alert("Entrez un nombre positif!!!")
+        rayon.classList.replace("is-link", "is-danger")
+        modal.classList.add("is-active")
     } else {
         diametre.value = number * 2
         perimetre.value = diametre.value * Math.PI
         aireBase.value = Math.PI * Math.pow(number, 2)
 
-        numVerif = [rayon.value, diametre.value, perimetre.value, aireBase.value]
+        updateNumbers()
+        dangerToLink()
     }
 }
 
@@ -33,13 +48,15 @@ function diametreF() {
     let number = Number(diametre.value)
 
     if (number <= 0) {
-        alert("Entrez un nombre positif!!!")
+        diametre.classList.replace("is-link", "is-danger")
+        modal.classList.add("is-active")
     } else {
         rayon.value = number / 2
         perimetre.value = diametre.value * Math.PI
         aireBase.value = Math.PI * Math.pow(rayon.value, 2)
 
-        numVerif = [rayon.value, diametre.value, perimetre.value, aireBase.value]
+        updateNumbers()
+        dangerToLink()
     }
 }
 
@@ -47,13 +64,15 @@ function perimetreF() {
     let number = Number(perimetre.value)
 
     if (number <= 0) {
-        alert("Entrez un nombre positif!!!")
+        perimetre.classList.replace("is-link", "is-danger")
+        modal.classList.add("is-active")
     } else {
         diametre.value = number / Math.PI
         rayon.value = diametre.value / 2
         aireBase.value = Math.PI * Math.pow(rayon.value, 2)
 
-        numVerif = [rayon.value, diametre.value, perimetre.value, aireBase.value]
+        updateNumbers()
+        dangerToLink()
     }
 }
 
@@ -61,13 +80,15 @@ function aireBaseF() {
     let number = Number(aireBase.value)
 
     if (number <= 0) {
-        alert("Entrez un nombre positif!!!")
+        aireBase.classList.replace("is-link", "is-danger")
+        modal.classList.add("is-active")
     } else {
         rayon.value = Math.sqrt(number / Math.PI)
         diametre.value = rayon.value * 2
         perimetre.value = diametre.value * Math.PI
 
-        numVerif = [rayon.value, diametre.value, perimetre.value, aireBase.value]
+        updateNumbers()
+        dangerToLink()
     }
 }
 
@@ -76,75 +97,95 @@ function aireBaseF() {
 function hauteurF() {
     let number2 = Number(hauteur.value)
 
-    if (numVerif.every(isBelowZero)) {
-        alert("Entrez d'abord une valeur parmis (rayon, diametre, perimetre, aire de base")
+    if (Object.values(numVerif).some(isBelowZero)) {
+        modal2.classList.add("is-active")
+        hauteur.classList.replace("is-link", "is-danger")
     } else if (number2 <= 0) {
-        alert("Entrez un nombre positif!!!")
+        modal.classList.add("is-active")
     } else {
         apotheme.value = Math.sqrt(Math.pow(hauteur.value, 2) + Math.pow(rayon.value, 2)).toFixed(12)
         aireLaterale.value = Math.PI * rayon.value * apotheme.value
         aireTotale.value = (Number(aireLaterale.value) + Number(aireBase.value)).toFixed(12)
         volume.value = (1 / 3) * aireBase.value * number2
+
+        updateNumbers2()
+        dangerToLink()
     }
 }
 
 function apothemeF() {
     let number = Number(apotheme.value)
 
-    if (numVerif.every(isBelowZero)) {
-        alert("Entrez d'abord une valeur parmis (rayon, diametre, perimetre, aire de base")
+    if (Object.values(numVerif).some(isBelowZero)) {
+        modal2.classList.add("is-active")
+        apotheme.classList.replace("is-link", "is-danger")
     } else if (number <= 0) {
-        alert("Entrez un nombre positif!!!")
+        modal.classList.add("is-active")
     } else {
         aireLaterale.value = Math.PI * rayon.value * number
         aireTotale.value = (Number(aireLaterale.value) + Number(aireBase.value)).toFixed(12)
         hauteur.value = Math.sqrt(Math.pow(number, 2) - Math.pow(rayon.value, 2))
         volume.value = (1 / 3) * aireBase.value * hauteur.value
+
+        updateNumbers2()
+        dangerToLink()
     }
 }
 
 function aireLateraleF() {
     let number = Number(aireLaterale.value)
 
-    if (numVerif.every(isBelowZero)) {
-        alert("Entrez d'abord une valeur parmis (rayon, diametre, perimetre, aire de base")
+    if (Object.values(numVerif).some(isBelowZero)) {
+        modal2.classList.add("is-active")
+        aireLaterale.classList.replace("is-link", "is-danger")
     } else if (number <= 0) {
-        alert("Entrez un nombre positif!!!")
+        modal.classList.add("is-active")
     } else {
         aireTotale.value = (Number(number) + Number(aireBase.value)).toFixed(12)
         apotheme.value = number / (Math.PI * rayon.value)
         hauteur.value = Math.sqrt(Math.pow(apotheme.value, 2) - Math.pow(rayon.value, 2))
         volume.value = (1 / 3) * aireBase.value * hauteur.value
+
+        updateNumbers2()
+        dangerToLink()
     }
 }
 
 function aireTotaleF() {
     let number = Number(aireTotale.value)
 
-    if (numVerif.every(isBelowZero)) {
-        alert("Entrez d'abord une valeur parmis (rayon, diametre, perimetre, aire de base")
+    if (Object.values(numVerif).some(isBelowZero)) {
+        modal2.classList.add("is-active")
+        aireTotale.classList.replace("is-link", "is-danger")
     } else if (number <= 0) {
-        alert("Entrez une valeur positive!!!")
+        modal.classList.add("is-active")
     } else {
         aireLaterale.value = (number - aireBase.value).toFixed(12)
         apotheme.value = (aireLaterale.value / (Math.PI * rayon.value)).toFixed(12)
         hauteur.value = (Math.sqrt(Math.pow(apotheme.value, 2) - Math.pow(rayon.value, 2))).toFixed(12)
         volume.value = ((1 / 3) * aireBase.value * hauteur.value).toFixed(12)
+
+        updateNumbers2()
+        dangerToLink()
     }
 }
 
 function volumeF() {
     let number = Number(volume.value)
 
-    if (numVerif.every(isBelowZero)) {
-        alert("Entrez d'abord une valeur parmis (rayon, diametre, perimetre, aire de base")
+    if (Object.values(numVerif).some(isBelowZero)) {
+        modal2.classList.add("is-active")
+        volume.classList.replace("is-link", "is-danger")
     } else if (number <= 0) {
-        alert("Entrez un nombrez positif!!!")
+        modal.classList.add("is-active")
     } else {
         hauteur.value = 3 * (volume.value / aireBase.value)
         apotheme.value = Math.sqrt(Math.pow(hauteur.value, 2) + Math.pow(rayon.value, 2)).toFixed(12)
         aireLaterale.value = Math.PI * rayon.value * apotheme.value
         aireTotale.value = (Number(aireLaterale.value) + Number(aireBase.value)).toFixed(12)
+
+        updateNumbers2()
+        dangerToLink()
     }
 }
 
@@ -198,5 +239,34 @@ btnReset.onclick = function () {
     aireLaterale.value = ""
     aireTotale.value = ""
     volume.value = ""
-    numVerif = ["", "", "", ""]
+    updateNumbers()
+    updateNumbers2()
+    dangerToLink()
+}
+
+function dangerToLink() {
+    rayon.classList.replace("is-danger", "is-link")
+    diametre.classList.replace("is-danger", "is-link")
+    aireBase.classList.replace("is-danger", "is-link")
+    diametre.classList.replace("is-danger", "is-link")
+    hauteur.classList.replace("is-danger", "is-link")
+    apotheme.classList.replace("is-danger", "is-link")
+    aireLaterale.classList.replace("is-danger", "is-link")
+    aireTotale.classList.replace("is-danger", "is-link")
+    volume.classList.replace("is-danger", "is-link")
+}
+
+function updateNumbers() {
+    numVerif.rayon = rayon.value
+    numVerif.diametre = diametre.value
+    numVerif.perimetre = perimetre.value
+    numVerif.aireBase = aireBase.value
+}
+
+function updateNumbers2() {
+    numVerif2.hauteur = hauteur.value,
+        numVerif2.apotheme = apotheme.value,
+        numVerif2.aireLaterale = aireLaterale.value,
+        numVerif2.aireTotale = aireTotale.value,
+        numVerif2.volume = volume.value
 }
