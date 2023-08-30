@@ -35,9 +35,9 @@ function rayonF() {
         rayon.classList.replace("is-link", "is-danger")
         modal.classList.add("is-active")
     } else {
-        diametre.value = number * 2
-        perimetre.value = diametre.value * Math.PI
-        aireBase.value = Math.PI * Math.pow(number, 2)
+        diametre.value = (number * 2).toFixed(3)
+        perimetre.value = (diametre.value * Math.PI).toFixed(3)
+        aireBase.value = (Math.PI * Math.pow(number, 2)).toFixed(3)
 
         updateNumbers()
         dangerToLink()
@@ -51,9 +51,9 @@ function diametreF() {
         diametre.classList.replace("is-link", "is-danger")
         modal.classList.add("is-active")
     } else {
-        rayon.value = number / 2
-        perimetre.value = diametre.value * Math.PI
-        aireBase.value = Math.PI * Math.pow(rayon.value, 2)
+        rayon.value = (number / 2).toFixed(3)
+        perimetre.value = (diametre.value * Math.PI).toFixed(3)
+        aireBase.value = (Math.PI * Math.pow(rayon.value, 2)).toFixed(3)
 
         updateNumbers()
         dangerToLink()
@@ -67,9 +67,9 @@ function perimetreF() {
         perimetre.classList.replace("is-link", "is-danger")
         modal.classList.add("is-active")
     } else {
-        diametre.value = number / Math.PI
-        rayon.value = diametre.value / 2
-        aireBase.value = Math.PI * Math.pow(rayon.value, 2)
+        diametre.value = (number / Math.PI).toFixed(3)
+        rayon.value = (diametre.value / 2).toFixed(3)
+        aireBase.value = (Math.PI * Math.pow(rayon.value, 2)).toFixed(3)
 
         updateNumbers()
         dangerToLink()
@@ -83,9 +83,9 @@ function aireBaseF() {
         aireBase.classList.replace("is-link", "is-danger")
         modal.classList.add("is-active")
     } else {
-        rayon.value = Math.sqrt(number / Math.PI)
-        diametre.value = rayon.value * 2
-        perimetre.value = diametre.value * Math.PI
+        rayon.value = Math.sqrt(number / Math.PI).toFixed(3)
+        diametre.value = (rayon.value * 2).toFixed(3)
+        perimetre.value = (diametre.value * Math.PI).toFixed(3)
 
         updateNumbers()
         dangerToLink()
@@ -103,10 +103,10 @@ function hauteurF() {
     } else if (number2 <= 0) {
         modal.classList.add("is-active")
     } else {
-        apotheme.value = Math.sqrt(Math.pow(hauteur.value, 2) + Math.pow(rayon.value, 2)).toFixed(12)
-        aireLaterale.value = Math.PI * rayon.value * apotheme.value
-        aireTotale.value = (Number(aireLaterale.value) + Number(aireBase.value)).toFixed(12)
-        volume.value = (1 / 3) * aireBase.value * number2
+        apotheme.value = Math.sqrt(Math.pow(hauteur.value, 2) + Math.pow(rayon.value, 2)).toFixed(3)
+        aireLaterale.value = (Math.PI * rayon.value * apotheme.value).toFixed(3)
+        aireTotale.value = (Number(aireLaterale.value) + Number(aireBase.value)).toFixed(3)
+        volume.value = ((1 / 3) * aireBase.value * number2).toFixed(3)
 
         updateNumbers2()
         dangerToLink()
@@ -122,10 +122,10 @@ function apothemeF() {
     } else if (number <= 0) {
         modal.classList.add("is-active")
     } else {
-        aireLaterale.value = Math.PI * rayon.value * number
-        aireTotale.value = (Number(aireLaterale.value) + Number(aireBase.value)).toFixed(12)
-        hauteur.value = Math.sqrt(Math.pow(number, 2) - Math.pow(rayon.value, 2))
-        volume.value = (1 / 3) * aireBase.value * hauteur.value
+        aireLaterale.value = (Math.PI * rayon.value * number).toFixed(3)
+        aireTotale.value = (Number(aireLaterale.value) + Number(aireBase.value)).toFixed(3)
+        hauteur.value = Math.sqrt(Math.pow(number, 2) - Math.pow(rayon.value, 2)).toFixed(3)
+        volume.value = ((1 / 3) * aireBase.value * hauteur.value).toFixed(3)
 
         updateNumbers2()
         dangerToLink()
@@ -141,10 +141,10 @@ function aireLateraleF() {
     } else if (number <= 0) {
         modal.classList.add("is-active")
     } else {
-        aireTotale.value = (Number(number) + Number(aireBase.value)).toFixed(12)
-        apotheme.value = number / (Math.PI * rayon.value)
-        hauteur.value = Math.sqrt(Math.pow(apotheme.value, 2) - Math.pow(rayon.value, 2))
-        volume.value = (1 / 3) * aireBase.value * hauteur.value
+        aireTotale.value = (Number(number) + Number(aireBase.value)).toFixed(3)
+        apotheme.value = (number / (Math.PI * rayon.value)).toFixed(3)
+        hauteur.value = Math.sqrt(Math.pow(apotheme.value, 2) - Math.pow(rayon.value, 2)).toFixed(3)
+        volume.value = ((1 / 3) * aireBase.value * hauteur.value).toFixed(3)
 
         updateNumbers2()
         dangerToLink()
@@ -160,10 +160,10 @@ function aireTotaleF() {
     } else if (number <= 0) {
         modal.classList.add("is-active")
     } else {
-        aireLaterale.value = (number - aireBase.value).toFixed(12)
-        apotheme.value = (aireLaterale.value / (Math.PI * rayon.value)).toFixed(12)
-        hauteur.value = (Math.sqrt(Math.pow(apotheme.value, 2) - Math.pow(rayon.value, 2))).toFixed(12)
-        volume.value = ((1 / 3) * aireBase.value * hauteur.value).toFixed(12)
+        aireLaterale.value = (number - aireBase.value).toFixed(3)
+        apotheme.value = (aireLaterale.value / (Math.PI * rayon.value)).toFixed(3)
+        hauteur.value = (Math.sqrt(Math.pow(apotheme.value, 2) - Math.pow(rayon.value, 2))).toFixed(3)
+        volume.value = ((1 / 3) * aireBase.value * hauteur.value).toFixed(3)
 
         updateNumbers2()
         dangerToLink()
@@ -179,10 +179,10 @@ function volumeF() {
     } else if (number <= 0) {
         modal.classList.add("is-active")
     } else {
-        hauteur.value = 3 * (volume.value / aireBase.value)
-        apotheme.value = Math.sqrt(Math.pow(hauteur.value, 2) + Math.pow(rayon.value, 2)).toFixed(12)
-        aireLaterale.value = Math.PI * rayon.value * apotheme.value
-        aireTotale.value = (Number(aireLaterale.value) + Number(aireBase.value)).toFixed(12)
+        hauteur.value = 3 * (volume.value / aireBase.value).toFixed(3)
+        apotheme.value = Math.sqrt(Math.pow(hauteur.value, 2) + Math.pow(rayon.value, 2)).toFixed(3)
+        aireLaterale.value = (Math.PI * rayon.value * apotheme.value).toFixed(3)
+        aireTotale.value = (Number(aireLaterale.value) + Number(aireBase.value)).toFixed(3)
 
         updateNumbers2()
         dangerToLink()
