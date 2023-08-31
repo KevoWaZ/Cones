@@ -39,6 +39,8 @@ function rayonF() {
         perimetre.value = (diametre.value * Math.PI).toFixed(3)
         aireBase.value = (Math.PI * Math.pow(number, 2)).toFixed(3)
 
+        resetEquation()
+        rayonE()
         updateNumbers()
         dangerToLink()
     }
@@ -55,6 +57,8 @@ function diametreF() {
         perimetre.value = (diametre.value * Math.PI).toFixed(3)
         aireBase.value = (Math.PI * Math.pow(rayon.value, 2)).toFixed(3)
 
+        resetEquation()
+        diametreE()
         updateNumbers()
         dangerToLink()
     }
@@ -71,6 +75,8 @@ function perimetreF() {
         rayon.value = (diametre.value / 2).toFixed(3)
         aireBase.value = (Math.PI * Math.pow(rayon.value, 2)).toFixed(3)
 
+        resetEquation()
+        perimetreE()
         updateNumbers()
         dangerToLink()
     }
@@ -87,6 +93,8 @@ function aireBaseF() {
         diametre.value = (rayon.value * 2).toFixed(3)
         perimetre.value = (diametre.value * Math.PI).toFixed(3)
 
+        resetEquation()
+        aireBaseE()
         updateNumbers()
         dangerToLink()
     }
@@ -108,6 +116,8 @@ function hauteurF() {
         aireTotale.value = (Number(aireLaterale.value) + Number(aireBase.value)).toFixed(3)
         volume.value = ((1 / 3) * aireBase.value * number2).toFixed(3)
 
+        resetEquation2()
+        hauteurE()
         updateNumbers2()
         dangerToLink()
     }
@@ -127,6 +137,8 @@ function apothemeF() {
         hauteur.value = Math.sqrt(Math.pow(number, 2) - Math.pow(rayon.value, 2)).toFixed(3)
         volume.value = ((1 / 3) * aireBase.value * hauteur.value).toFixed(3)
 
+        resetEquation2()
+        apothemeE()
         updateNumbers2()
         dangerToLink()
     }
@@ -146,6 +158,8 @@ function aireLateraleF() {
         hauteur.value = Math.sqrt(Math.pow(apotheme.value, 2) - Math.pow(rayon.value, 2)).toFixed(3)
         volume.value = ((1 / 3) * aireBase.value * hauteur.value).toFixed(3)
 
+        resetEquation2()
+        aireLateraleE()
         updateNumbers2()
         dangerToLink()
     }
@@ -165,6 +179,8 @@ function aireTotaleF() {
         hauteur.value = (Math.sqrt(Math.pow(apotheme.value, 2) - Math.pow(rayon.value, 2))).toFixed(3)
         volume.value = ((1 / 3) * aireBase.value * hauteur.value).toFixed(3)
 
+        resetEquation2()
+        aireTotaleE()
         updateNumbers2()
         dangerToLink()
     }
@@ -184,6 +200,8 @@ function volumeF() {
         aireLaterale.value = (Math.PI * rayon.value * apotheme.value).toFixed(3)
         aireTotale.value = (Number(aireLaterale.value) + Number(aireBase.value)).toFixed(3)
 
+        resetEquation2()
+        volumeE()
         updateNumbers2()
         dangerToLink()
     }
@@ -242,6 +260,8 @@ btnReset.onclick = function () {
     updateNumbers()
     updateNumbers2()
     dangerToLink()
+    resetEquation()
+    resetEquation2()
 }
 
 function dangerToLink() {
@@ -269,4 +289,14 @@ function updateNumbers2() {
         numVerif2.aireLaterale = aireLaterale.value,
         numVerif2.aireTotale = aireTotale.value,
         numVerif2.volume = volume.value
+}
+
+function resetEquation() {
+    ajout = document.querySelector('.equation')
+    ajout.innerHTML = ""
+}
+
+function resetEquation2() {
+    ajout2 = document.querySelector('.equation2')
+    ajout2.innerHTML = ""
 }
